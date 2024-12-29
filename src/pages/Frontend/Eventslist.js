@@ -14,7 +14,7 @@ const EventsList = () => {
 
     const handleNavigate = (e) => {
         e.preventDefault()
-        navigate("/Note")
+        navigate("/Event")
     }
 
 
@@ -23,8 +23,9 @@ const EventsList = () => {
 
     const getitems = useCallback(async () => {
         try {
-            const res = await axios.get(`https://hackthonfinal.vercel.app/events/get/${user.uid}`);
+            const res = await axios.get('https://hackthonfinal.vercel.app/events/get');
             if (res.status === 200) {
+                console.log("resDAta", res.data)
                 const { events } = res.data;
                 console.log("Fetched events:", events);
                 setEvents(events || []); // Fallback to empty array if events is undefined
@@ -39,22 +40,25 @@ const EventsList = () => {
         getitems();
     }, [getitems]);
     return (
-        <div className="mt-2">
+        <div className="row mt-4">
             {events.map((event) => (
-                <div key={event.id} className="note-item p-3 mb-3 rounded d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>{event.category}</strong>
-                        <br></br>
-                        <small>{event.location} </small>
+                <div key={event.id} className="col-md-4 col-sm-6 mb-4">
+                    <div className="card shadow-sm border-0">
+                        <div className="card-body">
+                            <h5 className="card-title text-dark fw-bold">{event.category}</h5>
+                            <p className="card-text text-muted mb-2">
+                                <i className="bi bi-geo-alt-fill text-danger"></i> {event.location}
+                            </p>
+                            <form onSubmit={handleNavigate}>
 
-                    </div>
-                    <div className='d-inline'>
-                        <form onSubmit={handleNavigate} className='d-inline'>
-
-                            <button className='btn btn-dark' onClick={() => {
-                                setCurrentEvent(event)
-                            }}>View Event</button>
-                        </form>
+                                <button
+                                    className="btn btn-dark w-100"
+                                    onClick={() => setCurrentEvent(event)}
+                                >
+                                    View Event
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             ))}

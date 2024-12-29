@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Header() {
   const { logout } = useContext(AuthContext);
+  const navigate = useNavigate('')
   const handlesubmit = (e) => {
     e.preventDefault();
     logout();
+  };
+  const handleNavigate = () => {
+    navigate("/profile", { replace: true });
   };
   return (
     <header>
@@ -28,13 +32,14 @@ export default function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-
             </ul>
-
+            <button className="rounded-1 mx-2 btn btn-info" onClick={handleNavigate}>
+              Profile
+            </button>
             <button className="rounded-1 btn btn-danger" onClick={handlesubmit}>
               Logout
             </button>
+
           </div>
         </div>
       </nav>

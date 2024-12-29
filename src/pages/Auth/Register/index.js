@@ -6,7 +6,6 @@ import axios from "axios"
 
 export default function Register() {
   const [state, setState] = useState({ fullName: "", email: "", password: "" });
-  const [file, setFile] = useState()
   const navigate = useNavigate('')
   const { dispatch, setIsAppLoading } = useContext(AuthContext);
 
@@ -56,9 +55,6 @@ export default function Register() {
     formData.append("name", fullName)
     formData.append("email", email)
     formData.append("uid", uid)
-    if (file) {
-      formData.append("image", file)
-    }
 
     try {
       axios.post("https://hackthonfinal.vercel.app/auth/profile", formData)
@@ -85,26 +81,6 @@ export default function Register() {
     }
   };
 
-  // let { fullName, email, password } = state;
-  // if (fullName.length > 2 && email !== "" && password.length > 7) {
-  //   const newuser = {
-  //     fullName,
-  //     email,
-  //     password,
-  //   };
-  //   const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-
-  //   existingUsers.push(newuser);
-
-  //   localStorage.setItem("users", JSON.stringify(existingUsers));
-
-  //   const formData = { fullName, email, password };
-  //   console.log("formData", formData);
-
-  //   navigate("/auth/login");
-  // } else {
-  //   setMessage("Information is not correct");
-  // }
   return (
     <main className="auth py-5" style={{ backgroundColor: "#f8f9fa", minHeight: "100vh" }}>
       <div className="container d-flex align-items-center justify-content-center vh-100">
@@ -162,19 +138,7 @@ export default function Register() {
                 style={{ borderRadius: "10px", padding: "10px" }}
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="image" className="form-label">
-                Profile Picture
-              </label>
-              <input
-                type="file"
-                id="image"
-                className="form-control"
-                name="image"
-                onChange={(e) => setFile(e.target.files[0])}
-                style={{ borderRadius: "10px", padding: "10px" }}
-              />
-            </div>
+
             <button
               type="submit"
               className="btn btn-primary w-100"

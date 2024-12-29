@@ -4,8 +4,10 @@ import { AuthContext } from '../../../context/AuthContext';
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons"
 import { Link } from 'react-router-dom';
 import EventsList from '../Eventslist';
+import { HomeContext } from '../../../context/HomeContext';
 const Home = () => {
   const { user } = useContext(AuthContext)
+  const { currentEvent } = useContext(HomeContext);
   return (
     <mian className="frontend ">
 
