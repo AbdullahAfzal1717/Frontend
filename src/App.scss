@@ -1,0 +1,31 @@
+@import "./scss/bootstrap";
+@import "./scss/auth";
+@import "./scss/screen-loader";
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1 0 auto;
+}
+.frontend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.app-background {
+  // background-color: #e4d2f3; /* Light purple background */
+  height: 100vh;
+}
+
+.note-item {
+  // background-color: #f6e5ff; /* Light pinkish background for notes */
+  color: #333;
+  border: none;
+}
+
+
+
